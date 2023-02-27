@@ -69,17 +69,6 @@
     {
       "prompt": "example1",
       "answers": [
-        "1",
-        "1",
-        "1",
-        "1"
-      ],
-      "correctIndex": 0,
-      "id": 7
-    },
-    {
-      "prompt": "example1",
-      "answers": [
         "a",
         "b",
         "c",
