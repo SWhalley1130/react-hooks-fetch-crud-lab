@@ -3,43 +3,34 @@ import React, { useState } from "react";
 function QuestionForm({newQuestionAdded}) {
   const [formData, setFormData] = useState({
     prompt: "",
-    answers:
-    [
-      "",
-      "",
-      "",
-      ""
-    ],
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
     correctIndex: 0,
   });
 
-  console.log(formData)
-
   function handleChange(event) {
-    // console.log(event.target.name)
-    // console.log(event.target.value)
-
-    if (event.target.name.includes('answer'))
-    {
-      const arrayIndex=parseInt(event.target.name.substr(8))
-      console.log(formData.answers)
-      console.log(formData.answers[0].value)
-      // setFormData({
-      //   ...formData, 
-      //   [formData.answers[arrayIndex]]: event.target.value
-      // })
-    }
-    else 
-    {
-      setFormData({
-        ...formData,
-        [event.target.name]: event.target.value,
-      });
-  }
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    const formattedForm=
+    {
+      prompt:formData.prompt,
+      answers:
+      [
+        formData.answer1,
+        formData.answer2,
+        formData.answer3,
+        formData.answer4
+      ],
+      correctIndex:formData.correctIndex
+    }
     fetch(`http://localhost:4000/questions`,
     {
       method:'POST',
@@ -48,10 +39,10 @@ function QuestionForm({newQuestionAdded}) {
         "Content-Type":"application/json",
         "Accepts":"application/json"
       },
-      body:JSON.stringify(formData)
+      body:JSON.stringify(formattedForm)
     })
     .then(res=>res.json())
-    .then(newQ=>console.log(newQ))
+    .then(newQ=>newQuestionAdded(newQ))
   }
 
   return (
@@ -71,8 +62,8 @@ function QuestionForm({newQuestionAdded}) {
           Answer 1:
           <input
             type="text"
-            name="answers[0]"
-            value={formData.answers[0]}
+            name="answer1"
+            value={formData.answer1}
             onChange={handleChange}
           />
         </label>
@@ -80,8 +71,8 @@ function QuestionForm({newQuestionAdded}) {
           Answer 2:
           <input
             type="text"
-            name="answers[1]"
-            value={formData.answers[1]}
+            name="answer2"
+            value={formData.answer2}
             onChange={handleChange}
           />
         </label>
@@ -89,8 +80,8 @@ function QuestionForm({newQuestionAdded}) {
           Answer 3:
           <input
             type="text"
-            name="answers[2]"
-            value={formData.answers[2]}
+            name="answer3"
+            value={formData.answer3}
             onChange={handleChange}
           />
         </label>
@@ -98,8 +89,8 @@ function QuestionForm({newQuestionAdded}) {
           Answer 4:
           <input
             type="text"
-            name="answers[3]"
-            value={formData.answers[3]}
+            name="answer4"
+            value={formData.answer4}
             onChange={handleChange}
           />
         </label>
@@ -110,10 +101,10 @@ function QuestionForm({newQuestionAdded}) {
             value={formData.correctIndex}
             onChange={handleChange}
           >
-            <option value="0">{formData.answers[0]}</option>
-            <option value="1">{formData.answers[1]}</option>
-            <option value="2">{formData.answers[2]}</option>
-            <option value="3">{formData.answers[3]}</option>
+            <option value="0">{formData.answer1}</option>
+            <option value="1">{formData.answer2}</option>
+            <option value="2">{formData.answer3}</option>
+            <option value="3">{formData.answer4}</option>
           </select>
         </label>
         <button type="submit">Add Question</button>
