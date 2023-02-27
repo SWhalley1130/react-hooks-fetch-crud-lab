@@ -2,7 +2,7 @@ import React from "react";
 import {v4 as uuid} from "uuid";
 import QuestionItem from "./QuestionItem";
 
-function QuestionList({questions}) {
+function QuestionList({questions, questionDeleted}) {
 
   return (
     <section>
@@ -10,7 +10,7 @@ function QuestionList({questions}) {
       <ul>
         {questions.map(q=>
 
-            <QuestionItem key={uuid()} question={q} />
+          <QuestionItem questionDeleted={questionDeleted} key={uuid()} question={q} />
         )}
       </ul>
     </section>
