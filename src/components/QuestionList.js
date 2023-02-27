@@ -1,5 +1,6 @@
 import React from "react";
 import {v4 as uuid} from "uuid";
+import QuestionItem from "./QuestionItem";
 
 function QuestionList({questions}) {
 
@@ -9,7 +10,7 @@ function QuestionList({questions}) {
       <ul>
         {questions.map(q=>
 
-            <li key={uuid()}>{q.prompt}</li>
+            <QuestionItem key={uuid()} question={q} />
         )}
       </ul>
     </section>
