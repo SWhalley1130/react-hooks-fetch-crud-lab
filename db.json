@@ -65,39 +65,6 @@
         "controlled"
       ],
       "correctIndex": 1
-    },
-    {
-      "prompt": "example1",
-      "answers": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "correctIndex": 0,
-      "id": 8
-    },
-    {
-      "prompt": "example2",
-      "answers": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "correctIndex": 0,
-      "id": 9
-    },
-    {
-      "prompt": "example3",
-      "answers": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "correctIndex": 0,
-      "id": 10
     }
   ]
 }

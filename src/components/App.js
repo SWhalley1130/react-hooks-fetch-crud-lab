@@ -24,10 +24,23 @@ function App() {
     setQuestions(questions.filter(q => q !== deletedQ));
   }
 
+  function updatedCorrectAnswer(updatedQ)
+  {
+    console.log([...questions]);
+    //setQuestions([...questions])
+  }
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm newQuestionAdded={newQuestionAdded} /> : <QuestionList questionDeleted={questionDeleted} questions={questions} />}
+      {page === "Form" ? 
+      <QuestionForm newQuestionAdded={newQuestionAdded} /> 
+      : 
+      <QuestionList 
+        updatedCorrectAnswer={updatedCorrectAnswer}
+        questionDeleted={questionDeleted} 
+        questions={questions} 
+      />}
     </main>
   );
 }
